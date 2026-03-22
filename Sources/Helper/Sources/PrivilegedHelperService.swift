@@ -18,7 +18,19 @@ final class PrivilegedHelperService: NSObject, NSXPCListenerDelegate, ShecanPriv
             return
         }
 
-        runNetworkSetup(arguments: ["-setdnsservers", service] + servers, reply: reply)
+        runNetworkSetup(arguments: ["-setdnsservers", service] + servers) { [self] success, message in
+            guard success else {
+                reply(false, message)
+                return
+            }
+
+            do {
+                try flushDNSCaches()
+                reply(true, nil)
+            } catch {
+                reply(false, error.localizedDescription)
+            }
+        }
     }
 
     func restoreAutomaticDNS(
@@ -38,6 +50,7 @@ final class PrivilegedHelperService: NSObject, NSXPCListenerDelegate, ShecanPriv
 
             do {
                 try disconnectConnectedVPNs()
+                try flushDNSCaches()
                 reply(true, nil)
             } catch {
                 reply(false, error.localizedDescription)
@@ -84,6 +97,11 @@ final class PrivilegedHelperService: NSObject, NSXPCListenerDelegate, ShecanPriv
         for identifier in connectedIdentifiers {
             _ = try runCommand("/usr/sbin/scutil", arguments: ["--nc", "stop", identifier])
         }
+    }
+
+    private func flushDNSCaches() throws {
+        _ = try runCommand("/usr/bin/dscacheutil", arguments: ["-flushcache"])
+        _ = try runCommand("/usr/bin/killall", arguments: ["-HUP", "mDNSResponder"])
     }
 
     private func connectedVPNIdentifier(from line: String) -> String? {
