@@ -4,11 +4,11 @@ set -euo pipefail
 HELPER_LABEL="ir.shecan.desktop.helper"
 HELPER_OUTPUT_DIR="${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Library/LaunchServices"
 HELPER_BINARY="${HELPER_OUTPUT_DIR}/${HELPER_LABEL}"
-INFO_PLIST="${SRCROOT}/Shecan/Resources/Helper/Helper-Info.plist"
-LAUNCHD_PLIST="${SRCROOT}/Shecan/Resources/Helper/Helper-Launchd.plist"
-SHARED_SOURCE="${SRCROOT}/Shecan/Shared/XPC/PrivilegedHelperProtocol.swift"
-HELPER_MAIN="${SRCROOT}/Shecan/Helper/Sources/HelperMain.swift"
-HELPER_SERVICE="${SRCROOT}/Shecan/Helper/Sources/PrivilegedHelperService.swift"
+INFO_PLIST="${SRCROOT}/Sources/Resources/Helper/Helper-Info.plist"
+LAUNCHD_PLIST="${SRCROOT}/Sources/Resources/Helper/Helper-Launchd.plist"
+SHARED_SOURCE="${SRCROOT}/Sources/Shared/XPC/PrivilegedHelperProtocol.swift"
+HELPER_MAIN="${SRCROOT}/Sources/Helper/Sources/HelperMain.swift"
+HELPER_SERVICE="${SRCROOT}/Sources/Helper/Sources/PrivilegedHelperService.swift"
 
 mkdir -p "${HELPER_OUTPUT_DIR}"
 
