@@ -63,13 +63,11 @@
 		A00000000000000000000021 /* Shecan */ = {
 			isa = PBXGroup;
 			children = (
-				A00000000000000000000001 /* ShecanApp.swift */,
-				A00000000000000000000023 /* Models */,
+				A00000000000000000000023 /* App */,
+				A00000000000000000000070 /* Features */,
 				A00000000000000000000024 /* Services */,
 				A00000000000000000000028 /* Shared */,
 				A00000000000000000000029 /* Helper */,
-				A00000000000000000000025 /* ViewModels */,
-				A00000000000000000000026 /* Views */,
 				A00000000000000000000027 /* Resources */,
 				A0000000000000000000002A /* BuildScripts */,
 			);
@@ -84,49 +82,33 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A00000000000000000000023 /* Models */ = {
+		A00000000000000000000023 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				A00000000000000000000002 /* AppModels.swift */,
+				A00000000000000000000001 /* ShecanApp.swift */,
+				A00000000000000000000071 /* Models */,
+				A00000000000000000000072 /* ViewModels */,
 			);
-			path = Models;
+			path = App;
 			sourceTree = "<group>";
 		};
 		A00000000000000000000024 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				A00000000000000000000003 /* KeychainHelper.swift */,
-				A00000000000000000000004 /* DNSManager.swift */,
-				A00000000000000000000005 /* LinkUpdaterService.swift */,
-				A0000000000000000000000C /* PrivilegedHelperClient.swift */,
+				A00000000000000000000073 /* DNS */,
+				A00000000000000000000074 /* Updater */,
+				A00000000000000000000075 /* Security */,
+				A00000000000000000000076 /* Privileges */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		A00000000000000000000025 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				A00000000000000000000006 /* AppViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		A00000000000000000000026 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				A00000000000000000000007 /* DashboardView.swift */,
-				A00000000000000000000008 /* MenuBarContentView.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		A00000000000000000000027 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				A0000000000000000000001E /* Assets.xcassets */,
-				A00000000000000000000009 /* Info.plist */,
-				A0000000000000000000000F /* Helper-Info.plist */,
-				A00000000000000000000010 /* Helper-Launchd.plist */,
+				A00000000000000000000078 /* App */,
+				A00000000000000000000079 /* Helper */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -134,7 +116,7 @@
 		A00000000000000000000028 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				A0000000000000000000000B /* PrivilegedHelperProtocol.swift */,
+				A00000000000000000000077 /* XPC */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -142,8 +124,7 @@
 		A00000000000000000000029 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				A0000000000000000000000D /* HelperMain.swift */,
-				A0000000000000000000000E /* PrivilegedHelperService.swift */,
+				A0000000000000000000007A /* Sources */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -153,7 +134,114 @@
 			children = (
 				A0000000000000000000001C /* build-helper.sh */,
 			);
-			path = ../BuildScripts;
+			path = ../Scripts;
+			sourceTree = "<group>";
+		};
+		A00000000000000000000070 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				A0000000000000000000007B /* Dashboard */,
+				A0000000000000000000007C /* MenuBar */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		A00000000000000000000071 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A00000000000000000000002 /* AppModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A00000000000000000000072 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A00000000000000000000006 /* AppViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		A00000000000000000000073 /* DNS */ = {
+			isa = PBXGroup;
+			children = (
+				A00000000000000000000004 /* DNSManager.swift */,
+			);
+			path = DNS;
+			sourceTree = "<group>";
+		};
+		A00000000000000000000074 /* Updater */ = {
+			isa = PBXGroup;
+			children = (
+				A00000000000000000000005 /* LinkUpdaterService.swift */,
+			);
+			path = Updater;
+			sourceTree = "<group>";
+		};
+		A00000000000000000000075 /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				A00000000000000000000003 /* KeychainHelper.swift */,
+			);
+			path = Security;
+			sourceTree = "<group>";
+		};
+		A00000000000000000000076 /* Privileges */ = {
+			isa = PBXGroup;
+			children = (
+				A0000000000000000000000C /* PrivilegedHelperClient.swift */,
+			);
+			path = Privileges;
+			sourceTree = "<group>";
+		};
+		A00000000000000000000077 /* XPC */ = {
+			isa = PBXGroup;
+			children = (
+				A0000000000000000000000B /* PrivilegedHelperProtocol.swift */,
+			);
+			path = XPC;
+			sourceTree = "<group>";
+		};
+		A00000000000000000000078 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				A00000000000000000000009 /* Info.plist */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		A00000000000000000000079 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				A0000000000000000000000F /* Helper-Info.plist */,
+				A00000000000000000000010 /* Helper-Launchd.plist */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		A0000000000000000000007A /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A0000000000000000000000D /* HelperMain.swift */,
+				A0000000000000000000000E /* PrivilegedHelperService.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		A0000000000000000000007B /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				A00000000000000000000007 /* DashboardView.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		A0000000000000000000007C /* MenuBar */ = {
+			isa = PBXGroup;
+			children = (
+				A00000000000000000000008 /* MenuBarContentView.swift */,
+			);
+			path = MenuBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,12 +318,12 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/BuildScripts/build-helper.sh",
-				"$(SRCROOT)/Shecan/Shared/PrivilegedHelperProtocol.swift",
-				"$(SRCROOT)/Shecan/Helper/HelperMain.swift",
-				"$(SRCROOT)/Shecan/Helper/PrivilegedHelperService.swift",
-				"$(SRCROOT)/Shecan/Resources/Helper-Info.plist",
-				"$(SRCROOT)/Shecan/Resources/Helper-Launchd.plist",
+				"$(SRCROOT)/Scripts/build-helper.sh",
+				"$(SRCROOT)/Shecan/Shared/XPC/PrivilegedHelperProtocol.swift",
+				"$(SRCROOT)/Shecan/Helper/Sources/HelperMain.swift",
+				"$(SRCROOT)/Shecan/Helper/Sources/PrivilegedHelperService.swift",
+				"$(SRCROOT)/Shecan/Resources/Helper/Helper-Info.plist",
+				"$(SRCROOT)/Shecan/Resources/Helper/Helper-Launchd.plist",
 			);
 			name = "Build Privileged Helper";
 			outputFileListPaths = (
@@ -245,7 +333,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/BuildScripts/build-helper.sh\"";
+			shellScript = "\"${SRCROOT}/Scripts/build-helper.sh\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -280,7 +368,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_APP_SANDBOX = NO;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = Shecan/Resources/Info.plist;
+				INFOPLIST_FILE = Shecan/Resources/App/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ir.shecan.desktop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -300,7 +388,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_APP_SANDBOX = NO;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = Shecan/Resources/Info.plist;
+				INFOPLIST_FILE = Shecan/Resources/App/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ir.shecan.desktop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
