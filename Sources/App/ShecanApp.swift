@@ -7,9 +7,9 @@ struct ShecanApp: App {
     var body: some Scene {
         WindowGroup("Shecan", id: "main") {
             DashboardView(viewModel: viewModel)
-                .frame(minWidth: 414, idealWidth: 414, maxWidth: 414, minHeight: 434, idealHeight: 434, maxHeight: 434)
+                .frame(minWidth: 414, idealWidth: 414, maxWidth: 414, minHeight: 454, idealHeight: 454, maxHeight: 454)
         }
-        .defaultSize(width: 414, height: 434)
+        .defaultSize(width: 414, height: 454)
         .windowResizability(.contentSize)
         .windowStyle(.hiddenTitleBar)
 

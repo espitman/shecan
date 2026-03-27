@@ -9,7 +9,7 @@
 	<key>CFBundleName</key>
 	<string>ir.shecan.desktop.helper</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>SMAuthorizedClients</key>
 	<array>
 		<string>identifier "ir.shecan.desktop"</string>

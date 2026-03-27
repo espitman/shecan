@@ -1,0 +1,31 @@
+<svg width="660" height="440" viewBox="0 0 660 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="48" y1="36" x2="612" y2="404" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8F5EE"/>
+      <stop offset="1" stop-color="#EEE8DC"/>
+    </linearGradient>
+    <linearGradient id="arrow" x1="258" y1="220" x2="402" y2="220" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F08A36"/>
+      <stop offset="1" stop-color="#E25E2B"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="660" height="440" rx="24" fill="url(#bg)"/>
+
+  <circle cx="582" cy="64" r="48" fill="#F2EBDD"/>
+  <circle cx="84" cy="374" r="60" fill="#F4EEE2"/>
+
+  <text x="330" y="78" text-anchor="middle" fill="#1F2924" font-size="28" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="700">
+    Install Shecan
+  </text>
+  <text x="330" y="110" text-anchor="middle" fill="#6E756F" font-size="15" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500">
+    Drag the app into Applications to finish setup
+  </text>
+
+  <path d="M258 220H384" stroke="url(#arrow)" stroke-width="10" stroke-linecap="round"/>
+  <path d="M362 196L402 220L362 244" stroke="#E56A2E" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <text x="330" y="404" text-anchor="middle" fill="#8A8E87" font-size="12" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="500">
+    Shecan for macOS 13 and later
+  </text>
+</svg>
