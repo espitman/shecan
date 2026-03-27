@@ -3,6 +3,7 @@ import AppKit
 
 struct DashboardView: View {
     @ObservedObject var viewModel: AppViewModel
+    @State private var window: NSWindow?
 
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -47,6 +48,8 @@ struct DashboardView: View {
                 }
             }
             .animation(.spring(response: 0.3, dampingFraction: 0.9), value: viewModel.isShowingSettings)
+            .background(WindowAccessor(window: $window))
+            .ignoresSafeArea(.container, edges: .top)
         }
     }
 
@@ -69,8 +72,26 @@ struct DashboardView: View {
     }
 
     private var header: some View {
-        HStack(alignment: .top) {
-            VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 0) {
+            HStack(alignment: .top) {
+                WindowControlsView(window: window)
+
+                Spacer(minLength: 12)
+
+                Button {
+                    viewModel.openSettings()
+                } label: {
+                    Image(systemName: "gearshape.fill")
+                        .font(.system(size: 15, weight: .semibold))
+                        .foregroundStyle(ShecanPalette.textPrimary)
+                        .frame(width: 34, height: 34)
+                        .background(Color.white.opacity(0.78), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+                }
+                .buttonStyle(.plain)
+            }
+            .frame(height: 22, alignment: .top)
+
+            VStack(alignment: .leading, spacing: 6) {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Shecan")
                         .font(.system(size: 20, weight: .bold, design: .rounded))
@@ -83,19 +104,7 @@ struct DashboardView: View {
 
                 statusPill
             }
-
-            Spacer(minLength: 12)
-
-            Button {
-                viewModel.openSettings()
-            } label: {
-                Image(systemName: "gearshape.fill")
-                    .font(.system(size: 15, weight: .semibold))
-                    .foregroundStyle(ShecanPalette.textPrimary)
-                    .frame(width: 34, height: 34)
-                    .background(Color.white.opacity(0.78), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
-            }
-            .buttonStyle(.plain)
+            .padding(.top, 20)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -412,7 +421,7 @@ private struct DashboardMetrics {
     var compactWidth: Bool { size.width < 360 }
 
     var horizontalPadding: CGFloat { compactWidth ? 8 : 10 }
-    var topPadding: CGFloat { compactHeight ? 10 : 12 }
+    var topPadding: CGFloat { 0 }
     var bottomPadding: CGFloat { compactHeight ? 10 : 12 }
     var sectionSpacing: CGFloat { compactHeight ? 8 : 10 }
 
@@ -506,5 +515,69 @@ struct ShecanSecondaryButtonStyle: ButtonStyle {
                 RoundedRectangle(cornerRadius: 16, style: .continuous)
                     .fill(configuration.isPressed ? Color(red: 0.89, green: 0.92, blue: 0.90) : Color(red: 0.925, green: 0.952, blue: 0.937))
             )
+    }
+}
+
+private struct WindowAccessor: NSViewRepresentable {
+    @Binding var window: NSWindow?
+
+    func makeNSView(context: Context) -> NSView {
+        let view = NSView()
+        view.isHidden = true
+        return view
+    }
+
+    func updateNSView(_ nsView: NSView, context: Context) {
+        DispatchQueue.main.async {
+            guard let hostWindow = nsView.window else {
+                return
+            }
+
+            if window !== hostWindow {
+                window = hostWindow
+            }
+
+            hostWindow.styleMask.insert(.fullSizeContentView)
+            hostWindow.titleVisibility = .hidden
+            hostWindow.titlebarAppearsTransparent = true
+            hostWindow.isMovableByWindowBackground = true
+            hostWindow.standardWindowButton(.closeButton)?.isHidden = true
+            hostWindow.standardWindowButton(.miniaturizeButton)?.isHidden = true
+            hostWindow.standardWindowButton(.zoomButton)?.isHidden = true
+        }
+    }
+}
+
+private struct WindowControlsView: View {
+    let window: NSWindow?
+
+    var body: some View {
+        HStack(spacing: 8) {
+            controlButton(color: Color(red: 1.0, green: 0.37, blue: 0.34)) {
+                window?.performClose(nil)
+            }
+
+            controlButton(color: Color(red: 1.0, green: 0.74, blue: 0.18)) {
+                window?.miniaturize(nil)
+            }
+
+            controlButton(color: Color(red: 0.16, green: 0.80, blue: 0.25)) {
+                window?.performZoom(nil)
+            }
+        }
+        .offset(y: 10)
+    }
+
+    private func controlButton(color: Color, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Circle()
+                .fill(color)
+                .frame(width: 12, height: 12)
+                .overlay(
+                    Circle()
+                        .stroke(Color.black.opacity(0.12), lineWidth: 0.5)
+                )
+        }
+        .buttonStyle(.plain)
     }
 }
